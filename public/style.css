@@ -333,7 +333,7 @@
             color: #fff;
         }
 
-        .nav-links a::after {
+        .nav-links a:not(.nav-cta)::after {
             content: '';
             position: absolute;
             bottom: -4px;
