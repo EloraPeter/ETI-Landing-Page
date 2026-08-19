@@ -1,6 +1,15 @@
 (function () {
     'use strict';
 
+    // --- Ecosystem page external links (single source of truth) ---
+    // Update URLs here — do not hardcode them elsewhere in the page.
+    var ECOSYSTEM_LINKS = {
+        community: 'https://t.me/eloratechinstitute',
+        // Not live yet: set this once the ETI documentation Google Drive
+        // folder exists, then re-run initEcosystemLinks (or reload).
+        documentation: null
+    };
+
     // --- DOM refs ---
     const header = document.getElementById('siteHeader');
     const navLinks = document.getElementById('navLinks');
@@ -201,8 +210,32 @@
         }
     });
 
+    // --- Wire up Ecosystem page links from ECOSYSTEM_LINKS ---
+    function initEcosystemLinks() {
+        var communityLink = document.getElementById('ecosystemCommunityLink');
+        if (communityLink && ECOSYSTEM_LINKS.community) {
+            communityLink.href = ECOSYSTEM_LINKS.community;
+        }
+
+        // Documentation has no real destination yet — leave the card as a
+        // plain, non-clickable div (its current behavior) until
+        // ECOSYSTEM_LINKS.documentation is set above.
+        var docCard = document.getElementById('ecosystemDocumentationLink');
+        if (docCard && ECOSYSTEM_LINKS.documentation) {
+            var docLink = document.createElement('a');
+            docLink.id = docCard.id;
+            docLink.className = docCard.className;
+            docLink.href = ECOSYSTEM_LINKS.documentation;
+            docLink.target = '_blank';
+            docLink.rel = 'noopener noreferrer';
+            docLink.innerHTML = docCard.innerHTML;
+            docCard.replaceWith(docLink);
+        }
+    }
+
     // --- Init ---
     initFromHash();
+    initEcosystemLinks();
 
     // --- Logo click goes home ---
     document.querySelectorAll('.logo').forEach(logo => {
