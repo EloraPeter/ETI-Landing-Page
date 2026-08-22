@@ -7,7 +7,7 @@
         community: 'https://t.me/eloratechinstitute',
         // Not live yet: set this once the ETI documentation Google Drive
         // folder exists, then re-run initEcosystemLinks (or reload).
-        documentation: null
+        documentation: 'https://drive.google.com/drive/folders/1a1MxFSQQhHxj6E6ur1deg09lZVHtX9bU?usp=sharing'
     };
 
     // --- DOM refs ---
