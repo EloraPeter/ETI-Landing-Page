@@ -1238,6 +1238,31 @@
             margin-top: 0.85rem;
         }
 
+        .hero-text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 0.85rem;
+            margin-left: 16px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        .hero-text-link:hover {
+            color: var(--eti-gold);
+        }
+
+        .hero-text-link i {
+            font-size: 0.75rem;
+            transition: transform var(--transition);
+        }
+
+        .hero-text-link:hover i {
+            transform: translateX(3px);
+        }
+
         .programs-list {
             padding: var(--space-8) 0;
             background: var(--background);
@@ -2213,32 +2238,18 @@
     font-size: 0.95rem;
 }
 
-/* ---- Learning Experience ---- */
-.learning-experience-section {
-    padding: var(--space-8) 0;
-    background: var(--background);
+/* ---- Why Learn With ETI: merged "How We Teach" subhead ----
+   (was previously its own near-empty section; folded in here to remove
+   a redundant heading-only section and tighten the page's visual rhythm) */
+.why-eti-subhead {
+    margin: var(--space-6) auto 0;
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--space-5);
 }
 
-.learning-steps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px 32px;
+.why-eti-subhead h3 {
     font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.learning-steps .step {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.learning-steps .arrow {
-    color: var(--eti-gold);
-    font-weight: 300;
+    margin-bottom: 8px;
 }
 
 /* ---- Certification ---- */
@@ -2445,6 +2456,11 @@
 
             .mobile-toggle {
                 display: block;
+            }
+
+            .hero-text-link {
+                display: flex;
+                margin-left: 0;
             }
 
             .hero {

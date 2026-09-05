@@ -185,12 +185,10 @@
 
                 <nav class="nav-links" id="navLinks">
                     <a href="#" data-page="home" class="active">Home</a>
-                    <a href="#" data-page="about">About</a>
                     <a href="#" data-page="programs">Programs</a>
                     <a href="#" data-page="courses">Courses</a>
                     <a href="#" data-page="services">Work With ETI</a>
-                    <a href="#" data-page="ecosystem">Ecosystem</a>
-                    <a href="#" data-page="faq">FAQ</a>
+                    <a href="#" data-page="about">About</a>
                     <a href="#" data-page="contact">Contact</a>
                     <a href="#" data-page="programs"
                         class="btn btn-gold btn-sm nav-cta">
@@ -951,6 +949,9 @@
                         class="btn btn-gold btn-sm program-cta">
                         <i class="fas fa-rocket"></i> Register Now
                     </a>
+                    <a href="#" data-page="courses" class="hero-text-link">
+                        Check Available Courses <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
@@ -1218,6 +1219,25 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Bridge to Courses (moved here from the Courses page, where
+                 it pointed back at itself). This is the natural next step
+                 after reviewing programs: see the specific courses inside
+                 them. Copy is unchanged from its original placement. -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Your next skill could change what comes next.</h2>
+                    <p>Explore ETI courses and find the one that fits where you're going.</p>
+                    <div class="btn-group">
+                        <a href="#" data-page="courses" class="btn btn-gold">
+                            <i class="fas fa-arrow-right"></i> Explore Courses
+                        </a>
+                        <a href="#" data-page="contact" class="btn btn-outline-light">
+                            <i class="fas fa-envelope"></i> Contact ETI
+                        </a>
+                    </div>
+                </div>
+            </section>
         </section>
 
         <!-- ============================================================
@@ -1293,39 +1313,15 @@
                 </div>
             </section>
 
-            <!-- Course Catalogue CTA (bottom) -->
-            <section class="courses-grid" style="padding-top: 0;">
-                <div class="container">
-                    <div class="catalogue-cta-bottom">
-                        <h3>Want the full picture?</h3>
-                        <p>Download the ETI course catalogue for detailed outlines, pricing, and schedules across every program.</p>
-                        <a href="#" data-catalogue-download class="btn btn-gold">
-                            <i class="fas fa-file-arrow-down"></i> Download Course Catalogue
-                        </a>
-                    </div>
-                </div>
-            </section>
+            <!-- Course Catalogue CTA and "Featured Program" static block removed
+                 here — the September 2026 Web Development with AI cohort is
+                 already highlighted (gold-bordered "featured" card + Register
+                 Now CTA) inside the dynamic Upcoming Cohorts grid above, so a
+                 separate static duplicate is no longer needed. The catalogue
+                 download CTA now appears once, after Certification below,
+                 instead of immediately repeating the hero's download link. -->
 
-            <!-- Featured Program (current cohort) -->
-            <section class="featured-section">
-                <div class="container">
-                    <div class="featured-program">
-                        <div class="featured-badge">CURRENT OPPORTUNITY – September 2026 Cohort</div>
-                        <h2>Web Development with AI</h2>
-                        <p>Learn modern web development enhanced with artificial intelligence. Build websites and applications faster using AI‑assisted workflows, modern frameworks, APIs, and automation tools.</p>
-                        <div class="featured-meta">
-                            <span><i class="far fa-clock"></i> 7 weeks</span>
-                            <span><i class="fas fa-laptop"></i> Online</span>
-                            <span><i class="fas fa-tag"></i> AI‑Powered Development</span>
-                        </div>
-                        <a href="https://cohort.eloratechinstitute.com/" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
-                            <i class="fas fa-rocket"></i> Register Now
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Why Learn With ETI -->
+            <!-- Why Learn With ETI (includes "How We Teach" merged in) -->
             <section class="why-eti-section">
                 <div class="container">
                     <div class="section-header">
@@ -1355,18 +1351,11 @@
                             <p>Learn to use modern AI tools to accelerate your development.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Learning Experience -->
-            <section class="learning-experience-section">
-                <div class="container">
-                    <div class="section-header">
+                    <div class="section-header why-eti-subhead">
                         <span class="label"><i class="fas fa-sync-alt"></i> How We Teach</span>
-                        <h2>Learn → Build → Get Feedback → Grow</h2>
+                        <h3>Learn → Build → Get Feedback → Grow</h3>
                         <p>Our approach is hands‑on and iterative. You'll build from day one.</p>
                     </div>
-                   
                 </div>
             </section>
 
@@ -1437,17 +1426,16 @@
     </div>
 </section>
 
-            <!-- Final CTA -->
-            <section class="cta-section">
+            <!-- Course Catalogue CTA (deep-dive close, moved from directly after
+                 Cohorts to avoid repeating the same download CTA back-to-back
+                 with the hero) -->
+            <section class="courses-grid" style="padding-top: 0;">
                 <div class="container">
-                    <h2>Your next skill could change what comes next.</h2>
-                    <p>Explore ETI courses and find the one that fits where you're going.</p>
-                    <div class="btn-group">
-                        <a href="#" data-page="courses" class="btn btn-gold">
-                            <i class="fas fa-arrow-right"></i> Explore Courses
-                        </a>
-                        <a href="#" data-page="contact" class="btn btn-outline-light">
-                            <i class="fas fa-envelope"></i> Contact ETI
+                    <div class="catalogue-cta-bottom">
+                        <h3>Want the full picture?</h3>
+                        <p>Download the ETI course catalogue for detailed outlines, pricing, and schedules across every program.</p>
+                        <a href="#" data-catalogue-download class="btn btn-gold">
+                            <i class="fas fa-file-arrow-down"></i> Download Course Catalogue
                         </a>
                     </div>
                 </div>
@@ -2022,6 +2010,7 @@
                         <a href="#" data-page="programs">Programs</a>
                         <a href="#" data-page="courses">Courses</a>
                         <a href="#" data-page="ecosystem">Ecosystem</a>
+                        <a href="#" data-page="faq">FAQ</a>
                         <a href="#" data-page="contact">Contact</a>
                     </div>
                     <div class="footer-col">
