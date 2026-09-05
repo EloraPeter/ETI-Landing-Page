@@ -1161,8 +1161,8 @@ h4,
 }
 
 .founder-image {
-    width: 90%;
-    margin: 0 auto;
+    /* width: 90%;
+    margin: 0 auto; */
     background: var(--background);
     border-radius: var(--radius-lg);
     aspect-ratio: 1/1.2;
@@ -1175,6 +1175,14 @@ h4,
     gap: 12px;
     text-align: center;
     padding: 20px;
+}
+
+.founder-image img {
+    width: 90%;
+    max-width: 280px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
 }
 
 .founder-image i {
