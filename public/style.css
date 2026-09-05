@@ -1155,7 +1155,7 @@ h4,
 
 .founder-grid {
     display: grid;
-    grid-template-columns: 0.8fr 2fr;
+    grid-template-columns: 1fr 2fr;
     gap: 48px;
     align-items: start;
 }
