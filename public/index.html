@@ -74,6 +74,11 @@
                     "https://www.instagram.com/eloratechinstitute",
                     "https://www.facebook.com/profile.php?id=61574697245670"
                 ],
+                "makesOffer": [
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software & Web Development", "description": "Business websites, web applications, custom software, dashboards, portals, and APIs." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX & Product Design", "description": "User interface and experience design, wireframes, prototypes, and design systems." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI & Automation Solutions", "description": "AI-powered applications, integrations, and workflow automation for businesses." } }
+                ],
                 "hasCourse": [
                     { "@type": "Course", "name": "Web Development", "description": "Build production-ready web applications using React, Next.js, APIs, databases, deployment, and SEO.", "provider": { "@id": "https://eloratechinstitute.com/#organization" }, "url": "https://cohort.eloratechinstitute.com/" },
                     { "@type": "Course", "name": "Web Development with AI", "description": "Modern web development enhanced with AI-assisted workflows, frameworks, APIs, and automation tools.", "provider": { "@id": "https://eloratechinstitute.com/#organization" } },
@@ -182,8 +187,8 @@
                     <a href="#" data-page="home" class="active">Home</a>
                     <a href="#" data-page="about">About</a>
                     <a href="#" data-page="programs">Programs</a>
-                    <!-- NEW: Courses link -->
                     <a href="#" data-page="courses">Courses</a>
+                    <a href="#" data-page="services">Work With ETI</a>
                     <a href="#" data-page="ecosystem">Ecosystem</a>
                     <a href="#" data-page="faq">FAQ</a>
                     <a href="#" data-page="contact">Contact</a>
@@ -282,6 +287,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Learn with ETI / Build with ETI -->
+            <section class="paths-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="label"><i class="fas fa-signs-post"></i> Two Ways to Work With ETI</span>
+                        <h2>Are You Here to Learn, or to Build?</h2>
+                        <p>ETI serves both students growing their skills and clients who need technology built for them.</p>
+                    </div>
+                    <div class="paths-grid">
+                        <div class="path-card path-learn">
+                            <div class="path-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="path-eyebrow">For Students</span>
+                            <h3>Learn with ETI</h3>
+                            <p>Structured technology education designed to help you build practical skills and real-world projects — from beginner fundamentals to career-ready expertise.</p>
+                            <a href="#" data-page="programs" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Explore Programs
+                            </a>
+                        </div>
+                        <div class="path-card path-build">
+                            <div class="path-icon"><i class="fas fa-diagram-project"></i></div>
+                            <span class="path-eyebrow">For Businesses &amp; Founders</span>
+                            <h3>Build with ETI</h3>
+                            <p>Have a business, software, design, or technology project? ETI's team can design and build it for you — from websites to full software systems.</p>
+                            <a href="#" data-page="services" class="btn btn-gold">
+                                <i class="fas fa-arrow-right"></i> Work With ETI
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Mission / Origin Story -->
             <section class="mission-section">
@@ -1199,11 +1235,11 @@
                             <h1>Build skills that move you forward.</h1>
                             <p>Explore practical, career‑focused technology courses designed to help you learn, build, and grow with confidence.</p>
                             <div class="hero-actions">
-                                <a href="#" data-page="courses" class="btn btn-primary">
-                                    <i class="fas fa-arrow-right"></i> Explore Courses
-                                </a>
-                                <a href="#" data-page="programs" class="btn btn-outline-light">
+                                <a href="#cohorts" class="btn btn-primary">
                                     <i class="fas fa-calendar-alt"></i> View Upcoming Cohorts
+                                </a>
+                                <a href="#" data-catalogue-download class="btn btn-outline-light">
+                                    <i class="fas fa-file-arrow-down"></i> Download Course Catalogue
                                 </a>
                             </div>
                         </div>
@@ -1233,6 +1269,39 @@
                 <div class="container">
                     <div class="grid" id="courseCardContainer">
                         <!-- Rendered by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upcoming Cohorts -->
+            <!-- TODO(API): cohort data currently comes from a local mock
+                 array in script.js (COHORTS_DATA). Once the ETI Cohort
+                 admin dashboard (github.com/EloraPeter/ETI-cohort) has a
+                 public endpoint, point getCohorts() at it — this markup
+                 and its container ID (#cohortsContainer) don't need to
+                 change. -->
+            <section class="cohorts-section" id="cohorts">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="label"><i class="fas fa-users"></i> Upcoming Cohorts</span>
+                        <h2>Join a Cohort</h2>
+                        <p>See what's opening next and where there's still room to apply.</p>
+                    </div>
+                    <div class="cohorts-grid" id="cohortsContainer">
+                        <p class="no-cohorts">Loading upcoming cohorts…</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Catalogue CTA (bottom) -->
+            <section class="courses-grid" style="padding-top: 0;">
+                <div class="container">
+                    <div class="catalogue-cta-bottom">
+                        <h3>Want the full picture?</h3>
+                        <p>Download the ETI course catalogue for detailed outlines, pricing, and schedules across every program.</p>
+                        <a href="#" data-catalogue-download class="btn btn-gold">
+                            <i class="fas fa-file-arrow-down"></i> Download Course Catalogue
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1376,6 +1445,232 @@
                     <div class="btn-group">
                         <a href="#" data-page="courses" class="btn btn-gold">
                             <i class="fas fa-arrow-right"></i> Explore Courses
+                        </a>
+                        <a href="#" data-page="contact" class="btn btn-outline-light">
+                            <i class="fas fa-envelope"></i> Contact ETI
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ============================================================
+        PAGE: SERVICES / WORK WITH ETI (NEW)
+        ============================================================ -->
+        <section class="page-section" id="page-services">
+            <!-- Hero -->
+            <div class="page-hero">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-briefcase"></i> WORK WITH ETI
+                            </div>
+                            <h1>Have an Idea? Let's Build It.</h1>
+                            <p>From websites and software systems to UI/UX, automation, and digital products, ETI helps turn ideas and business needs into practical technology solutions.</p>
+                            <div class="hero-actions">
+                                <a href="#project-form" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Start a Project
+                                </a>
+                                <a href="#" data-page="contact" class="btn btn-outline-light">
+                                    <i class="fas fa-comments"></i> Talk to ETI
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who we work with -->
+            <section class="audience-section">
+                <div class="container">
+                    <div class="section-header" style="text-align:center;">
+                        <span class="label"><i class="fas fa-people-group"></i> Who We Work With</span>
+                        <h2>Built for Builders of Every Kind</h2>
+                    </div>
+                    <div class="audience-list">
+                        <span>Startups</span>
+                        <span>Businesses</span>
+                        <span>Organizations &amp; NGOs</span>
+                        <span>Schools</span>
+                        <span>Entrepreneurs &amp; Founders</span>
+                        <span>Individuals</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Service Categories -->
+            <section class="services-intro">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="label"><i class="fas fa-toolbox"></i> Services</span>
+                        <h2>What ETI Can Build for You</h2>
+                        <p>Professional, practical technology services — designed and delivered by ETI's team.</p>
+                    </div>
+                    <div class="service-categories">
+                        <div class="service-category-card">
+                            <div class="service-icon"><i class="fas fa-code"></i></div>
+                            <h3>Software &amp; Web Development</h3>
+                            <ul>
+                                <li>Business websites &amp; landing pages</li>
+                                <li>Web applications &amp; custom software</li>
+                                <li>Internal business systems &amp; dashboards</li>
+                                <li>Portals, SaaS products &amp; APIs</li>
+                                <li>Database-driven applications</li>
+                            </ul>
+                        </div>
+                        <div class="service-category-card">
+                            <div class="service-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                            <h3>Mobile &amp; Application Development</h3>
+                            <ul>
+                                <li>Mobile applications</li>
+                                <li>Cross-platform applications</li>
+                                <li>Custom application development</li>
+                            </ul>
+                        </div>
+                        <div class="service-category-card">
+                            <div class="service-icon"><i class="fas fa-pen-ruler"></i></div>
+                            <h3>UI/UX Design</h3>
+                            <ul>
+                                <li>User interface &amp; user experience design</li>
+                                <li>Product design</li>
+                                <li>Wireframes &amp; prototypes</li>
+                                <li>Design systems</li>
+                                <li>Website / app redesigns</li>
+                            </ul>
+                        </div>
+                        <div class="service-category-card">
+                            <div class="service-icon"><i class="fas fa-palette"></i></div>
+                            <h3>Graphics &amp; Creative Design</h3>
+                            <ul>
+                                <li>Brand graphics &amp; marketing materials</li>
+                                <li>Social media designs</li>
+                                <li>Presentation design</li>
+                                <li>Visual assets &amp; digital creative work</li>
+                            </ul>
+                        </div>
+                        <div class="service-category-card">
+                            <div class="service-icon"><i class="fas fa-robot"></i></div>
+                            <h3>Technical &amp; AI Solutions</h3>
+                            <ul>
+                                <li>AI-powered applications &amp; integrations</li>
+                                <li>Automation &amp; AI assistants/agents</li>
+                                <li>Workflow automation</li>
+                                <li>Business process optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process -->
+            <section class="process-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="label"><i class="fas fa-route"></i> How It Works</span>
+                        <h2>From Idea to Delivery</h2>
+                        <p>A simple, transparent process from first conversation to finished product.</p>
+                    </div>
+                    <div class="process-grid">
+                        <div class="process-step">
+                            <span class="step-number">01</span>
+                            <h3>Tell Us What You Need</h3>
+                            <p>Share your idea, problem, or project requirements using the form below.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">02</span>
+                            <h3>We Understand &amp; Plan</h3>
+                            <p>ETI reviews your requirements and determines the best approach and scope.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">03</span>
+                            <h3>We Design &amp; Build</h3>
+                            <p>Your product is designed, developed, tested, and refined.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">04</span>
+                            <h3>We Deliver</h3>
+                            <p>You receive the finished solution along with any necessary support and documentation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Enquiry Form -->
+            <section class="project-form-section" id="project-form">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="label"><i class="fas fa-file-signature"></i> Start a Project</span>
+                        <h2>Tell Us About Your Project</h2>
+                        <p>Share a few details and ETI will follow up to discuss your project.</p>
+                    </div>
+                    <form class="project-form" id="projectForm">
+                        <div class="form-group">
+                            <label for="projectName">Full Name</label>
+                            <input type="text" id="projectName" placeholder="e.g. Amara Okafor" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectEmail">Email Address</label>
+                            <input type="email" id="projectEmail" placeholder="amara@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectPhone">Phone / WhatsApp</label>
+                            <input type="tel" id="projectPhone" placeholder="+234 800 000 0000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectOrg">Company / Organization</label>
+                            <input type="text" id="projectOrg" placeholder="Optional" />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectService">Service Required</label>
+                            <select id="projectService">
+                                <option value="web-development">Software &amp; Web Development</option>
+                                <option value="mobile-app">Mobile &amp; Application Development</option>
+                                <option value="ui-ux">UI/UX Design</option>
+                                <option value="graphics">Graphics &amp; Creative Design</option>
+                                <option value="ai-automation">Technical &amp; AI Solutions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectBudget">Estimated Budget (optional)</label>
+                            <input type="text" id="projectBudget" placeholder="e.g. ₦500,000 – ₦1,000,000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectTimeline">Desired Timeline (optional)</label>
+                            <input type="text" id="projectTimeline" placeholder="e.g. Within 6 weeks" />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectHeard">How Did You Hear About ETI?</label>
+                            <select id="projectHeard">
+                                <option value="">Select an option</option>
+                                <option value="social-media">Social Media</option>
+                                <option value="referral">Referral</option>
+                                <option value="search">Search Engine</option>
+                                <option value="community">Telegram / Community</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label for="projectDescription">Project Description</label>
+                            <textarea id="projectDescription" placeholder="Tell us about your idea, problem, or project requirements..." required></textarea>
+                            <p class="form-hint">The more detail you share, the better we can prepare for our first conversation.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Project Details
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Let's build something real.</h2>
+                    <p>Whatever stage your idea is at, ETI can help you turn it into a working product.</p>
+                    <div class="btn-group">
+                        <a href="#project-form" class="btn btn-gold">
+                            <i class="fas fa-rocket"></i> Start a Project
                         </a>
                         <a href="#" data-page="contact" class="btn btn-outline-light">
                             <i class="fas fa-envelope"></i> Contact ETI
@@ -1725,16 +2020,17 @@
                         <h4>Institute</h4>
                         <a href="#" data-page="about">About</a>
                         <a href="#" data-page="programs">Programs</a>
-                        <a href="#" data-page="courses">Courses</a> <!-- NEW -->
+                        <a href="#" data-page="courses">Courses</a>
                         <a href="#" data-page="ecosystem">Ecosystem</a>
                         <a href="#" data-page="contact">Contact</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Community</h4>
+                        <h4>Work With ETI</h4>
+                        <a href="#" data-page="services">Services</a>
+                        <a href="#" data-page="services">Start a Project</a>
+                        <a href="#" data-page="courses">Course Catalogue</a>
                         <a href="https://t.me/eloratechinstitute" target="_blank" rel="noopener noreferrer">Telegram</a>
                         <a href="https://github.com/EloraPeter" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href="#" data-page="courses">Course Catalogue</a> <!-- Updated from external link -->
-                        <a href="#" style="opacity: 0.6">Alumni (Coming Soon)</a>
                     </div>
                     <div class="footer-col">
                         <h4>Ecosystem</h4>

@@ -1,4 +1,4 @@
-        /* ============================================================
+/* ============================================================
                ETI BRAND SYSTEM v1.0 — CSS VARIABLES
                ============================================================ */
         :root {
@@ -318,6 +318,16 @@
             display: flex;
             align-items: center;
             gap: 32px;
+        }
+
+        @media (max-width: 1180px) and (min-width: 769px) {
+            .nav-links {
+                gap: 18px;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
         }
 
         .nav-links a {
@@ -2483,3 +2493,500 @@
                 grid-template-columns: 1fr;
             }
         }
+/* ============================================================
+   LEARN / BUILD SPLIT — Homepage
+   ============================================================ */
+.paths-section {
+    padding: var(--space-8) 0;
+    background: var(--surface);
+}
+
+.paths-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+}
+
+.path-card {
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.path-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.path-card.path-learn {
+    background: var(--background);
+}
+
+.path-card.path-build {
+    background: var(--eti-navy);
+    color: #fff;
+}
+
+.path-card .path-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: rgba(29, 78, 216, 0.1);
+    color: var(--eti-blue);
+}
+
+.path-card.path-build .path-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--eti-gold);
+}
+
+.path-card .path-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--eti-blue);
+}
+
+.path-card.path-build .path-eyebrow {
+    color: var(--eti-gold);
+}
+
+.path-card h3 {
+    font-size: 1.4rem;
+}
+
+.path-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.path-card.path-build p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.path-card .btn {
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .paths-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   CATALOGUE DOWNLOAD CTA
+   ============================================================ */
+.catalogue-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-top: var(--space-5);
+}
+
+.catalogue-cta .catalogue-cta-text {
+    flex: 1;
+    min-width: 220px;
+}
+
+.catalogue-cta .catalogue-cta-text strong {
+    display: block;
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.catalogue-cta .catalogue-cta-text span {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+}
+
+.catalogue-cta-bottom {
+    text-align: center;
+    max-width: 640px;
+    margin: var(--space-7) auto 0;
+    padding: var(--space-6) var(--space-4);
+    background: var(--eti-navy);
+    border-radius: var(--radius-lg);
+}
+
+.catalogue-cta-bottom h3 {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.catalogue-cta-bottom p {
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 20px;
+}
+
+/* ============================================================
+   UPCOMING COHORTS
+   ============================================================ */
+.cohorts-section {
+    padding: var(--space-8) 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border-color);
+}
+
+.cohorts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+}
+
+.cohort-card {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.cohort-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.cohort-card.featured {
+    border-color: var(--eti-gold);
+    box-shadow: 0 0 0 1px var(--eti-gold);
+}
+
+.cohort-status {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 4px 12px;
+    border-radius: 100px;
+}
+
+.cohort-status::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.cohort-status.status-open {
+    background: rgba(34, 197, 94, 0.12);
+    color: #16803d;
+}
+
+.cohort-status.status-soon {
+    background: rgba(245, 158, 11, 0.14);
+    color: #b45309;
+}
+
+.cohort-status.status-full {
+    background: rgba(239, 68, 68, 0.12);
+    color: #b91c1c;
+}
+
+.cohort-status.status-coming {
+    background: rgba(148, 163, 184, 0.18);
+    color: var(--text-secondary);
+}
+
+.cohort-card h3 {
+    font-size: 1.15rem;
+}
+
+.cohort-card .cohort-program {
+    font-size: 0.85rem;
+    color: var(--eti-blue);
+    font-weight: 600;
+}
+
+.cohort-card p.cohort-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.cohort-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.cohort-meta span i {
+    margin-right: 5px;
+    color: var(--eti-blue);
+}
+
+.cohort-card .cohort-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.no-cohorts {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: var(--space-6) 0;
+    grid-column: 1 / -1;
+}
+
+/* ============================================================
+   SERVICES / WORK WITH ETI
+   ============================================================ */
+.services-intro {
+    padding: var(--space-8) 0;
+    background: var(--surface);
+}
+
+.services-intro .section-header {
+    text-align: left;
+    max-width: 720px;
+    margin: 0 0 var(--space-5);
+}
+
+.service-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+}
+
+.service-category-card {
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    transition: all var(--transition);
+}
+
+.service-category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--eti-blue);
+}
+
+.service-category-card .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: rgba(29, 78, 216, 0.1);
+    color: var(--eti-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: var(--space-3);
+}
+
+.service-category-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.service-category-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.service-category-card ul li {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.service-category-card ul li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--eti-gold);
+    font-size: 0.75rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+/* ---- Process steps ---- */
+.process-section {
+    padding: var(--space-8) 0;
+    background: var(--eti-navy);
+    color: #fff;
+}
+
+.process-section .section-header h2,
+.process-section .section-header p {
+    color: #fff;
+}
+
+.process-section .section-header p {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+}
+
+.process-step {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+}
+
+.process-step .step-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--eti-gold);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.process-step h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.process-step p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ---- Who we work with ---- */
+.audience-section {
+    padding: var(--space-7) 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.audience-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: var(--space-4);
+}
+
+.audience-list span {
+    padding: 8px 18px;
+    border-radius: 100px;
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* ---- Project enquiry form ---- */
+.project-form-section {
+    padding: var(--space-8) 0;
+    background: var(--background);
+}
+
+.project-form {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3) var(--space-4);
+}
+
+.project-form .form-group.full {
+    grid-column: 1 / -1;
+}
+
+.project-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.project-form input,
+.project-form select,
+.project-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: var(--background);
+    color: var(--text-primary);
+    transition: all var(--transition);
+}
+
+.project-form input:focus,
+.project-form select:focus,
+.project-form textarea:focus {
+    outline: none;
+    border-color: var(--eti-blue);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+}
+
+.project-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.project-form .form-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.project-form .btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+@media (max-width: 640px) {
+    .project-form {
+        grid-template-columns: 1fr;
+        padding: var(--space-4);
+    }
+}

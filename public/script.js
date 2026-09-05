@@ -40,13 +40,27 @@
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // --- SEO updates for Courses page ---
-        if (pageId === 'courses') {
-            document.title = 'Courses & Programs | Elora Tech Institute';
-            const metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) {
-                metaDesc.setAttribute('content', 'Explore practical, career-focused technology courses and programs from Elora Tech Institute.');
+        // --- Per-page SEO updates ---
+        const SEO_BY_PAGE = {
+            courses: {
+                title: 'Courses & Upcoming Cohorts | Elora Tech Institute',
+                description: 'Explore practical, career-focused technology courses and upcoming cohorts from Elora Tech Institute. Download the course catalogue and apply today.'
+            },
+            programs: {
+                title: 'Programs | Elora Tech Institute',
+                description: 'Explore ETI\'s structured technology learning pathways — Software Engineering, AI, Product Design, and more — from beginner fundamentals to real-world projects.'
+            },
+            services: {
+                title: 'Work With ETI — Software, Web & Design Services | Elora Tech Institute',
+                description: 'Need technology built for your business, startup, or organization? ETI designs and builds websites, web apps, software, UI/UX, and AI-powered solutions.'
             }
+        };
+
+        const seo = SEO_BY_PAGE[pageId];
+        if (seo) {
+            document.title = seo.title;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', seo.description);
         } else {
             // For other pages, restore default meta if needed (optional)
             // The static meta in index.html will be used.
@@ -416,10 +430,279 @@
         }
     }
 
+    // ================================================================
+    //  COURSE CATALOGUE PDF DOWNLOAD
+    // ================================================================
+    // Single source of truth for the downloadable catalogue file.
+    // Replace `url` once the official ETI course catalogue PDF is ready —
+    // nothing else on the page needs to change.
+    const CATALOGUE_CONFIG = {
+        // TODO: replace with the real path once the PDF exists, e.g.
+        // '/assets/eti-course-catalogue.pdf'
+        url: '',
+        filename: 'ETI-Course-Catalogue.pdf'
+    };
+
+    function initCatalogueDownload() {
+        const buttons = document.querySelectorAll('[data-catalogue-download]');
+        if (!buttons.length) return;
+
+        buttons.forEach(btn => {
+            if (CATALOGUE_CONFIG.url) {
+                btn.setAttribute('href', CATALOGUE_CONFIG.url);
+                btn.setAttribute('download', CATALOGUE_CONFIG.filename);
+                btn.removeAttribute('aria-disabled');
+            } else {
+                // No PDF supplied yet — keep the button visible but inert,
+                // and tell the visitor honestly rather than 404-ing.
+                btn.setAttribute('href', '#');
+                btn.setAttribute('aria-disabled', 'true');
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showToast('The course catalogue PDF is coming soon. In the meantime, browse the courses below.', 'info');
+                });
+            }
+        });
+    }
+
+    // ================================================================
+    //  UPCOMING COHORTS
+    // ================================================================
+    // TODO(API): This static array is a placeholder. The eventual data
+    // shape should match what the ETI Cohort admin dashboard produces
+    // (https://github.com/EloraPeter/ETI-cohort). When that API exists,
+    // replace `getCohorts()` below with a fetch() call to it — nothing
+    // in renderCohorts() or the markup needs to change, since it only
+    // depends on this data shape:
+    //   { id, title, program, startDate, endDate, duration, format,
+    //     schedule, tuition, slots, slotsTaken, status, applicationUrl,
+    //     description, featured }
+    const COHORTS_DATA = [
+        {
+            id: 'sep-2026-web-dev-ai',
+            title: 'September 2026 Web Development with AI Cohort',
+            program: 'Web Development with AI',
+            startDate: '2026-09-15',
+            duration: '7 weeks',
+            format: 'Online',
+            schedule: 'Weekday evenings + weekend project labs',
+            tuition: '₦250,000',
+            slots: 50,
+            status: 'open', // open | soon | full | coming
+            applicationUrl: 'https://cohort.eloratechinstitute.com/',
+            description: 'Learn modern web development enhanced with AI‑assisted workflows, frameworks, APIs, and automation tools.',
+            featured: true
+        },
+        {
+            id: 'nov-2026-python-beginners',
+            title: 'November 2026 Python for Beginners Cohort',
+            program: 'Python for Beginners',
+            startDate: '2026-11-03',
+            duration: '8 weeks',
+            format: 'Hybrid',
+            schedule: 'Weekday evenings',
+            tuition: 'Contact ETI',
+            slots: 40,
+            status: 'soon',
+            applicationUrl: 'https://cohort.eloratechinstitute.com/',
+            description: 'Start your programming journey — fundamentals, problem‑solving, and your first real applications.',
+            featured: false
+        },
+        {
+            id: 'q1-2027-ui-ux',
+            title: 'Q1 2027 UI/UX Design Cohort',
+            program: 'UI/UX Design',
+            startDate: 'TBA',
+            duration: '10 weeks',
+            format: 'Hybrid',
+            schedule: 'TBA',
+            tuition: 'Contact ETI',
+            slots: 30,
+            status: 'coming',
+            applicationUrl: '',
+            description: 'From user research and wireframing to high‑fidelity prototypes and design systems.',
+            featured: false
+        }
+    ];
+
+    // TODO(API): swap this for an async fetch to the ETI Cohort admin
+    // dashboard's public endpoint once it exists, e.g.:
+    //   async function getCohorts() {
+    //       const res = await fetch('https://api.eloratechinstitute.com/cohorts');
+    //       return res.json();
+    //   }
+    // renderCohorts() already awaits getCohorts(), so no other change
+    // will be needed here.
+    async function getCohorts() {
+        return COHORTS_DATA;
+    }
+
+    const COHORT_STATUS_LABELS = {
+        open: 'Applications Open',
+        soon: 'Starting Soon',
+        full: 'Full',
+        coming: 'Coming Soon'
+    };
+
+    function formatCohortDate(dateStr) {
+        if (!dateStr || dateStr === 'TBA') return 'TBA';
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    async function renderCohorts() {
+        const container = document.getElementById('cohortsContainer');
+        if (!container) return;
+
+        container.innerHTML = '<p class="no-cohorts">Loading upcoming cohorts…</p>';
+
+        let cohorts = [];
+        try {
+            cohorts = await getCohorts();
+        } catch (err) {
+            container.innerHTML = '<p class="no-cohorts">Unable to load upcoming cohorts right now. Please check back soon.</p>';
+            return;
+        }
+
+        if (!cohorts.length) {
+            container.innerHTML = '<p class="no-cohorts">No upcoming cohorts are scheduled right now — check back soon or join our Telegram community to get notified.</p>';
+            return;
+        }
+
+        container.innerHTML = cohorts.map(c => {
+            const statusClass = 'status-' + (c.status || 'coming');
+            const statusLabel = COHORT_STATUS_LABELS[c.status] || 'Coming Soon';
+            const isActionable = c.status === 'open' || c.status === 'soon';
+            const ctaLabel = c.status === 'full' ? 'Join Waitlist' : 'Apply Now';
+
+            return `
+            <div class="cohort-card${c.featured ? ' featured' : ''}">
+                <span class="cohort-status ${statusClass}">${statusLabel}</span>
+                <span class="cohort-program">${c.program}</span>
+                <h3>${c.title}</h3>
+                <p class="cohort-desc">${c.description}</p>
+                <div class="cohort-meta">
+                    <span><i class="far fa-calendar"></i> ${formatCohortDate(c.startDate)}</span>
+                    <span><i class="far fa-clock"></i> ${c.duration}</span>
+                    <span><i class="fas fa-laptop"></i> ${c.format}</span>
+                    <span><i class="fas fa-tag"></i> ${c.tuition}</span>
+                </div>
+                <div class="cohort-actions">
+                    ${isActionable && c.applicationUrl
+                    ? `<a href="${c.applicationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> ${ctaLabel}</a>`
+                    : `<a href="#" data-page="contact" class="btn btn-secondary btn-sm"><i class="fas fa-bell"></i> Get Notified</a>`
+                }
+                </div>
+            </div>`;
+        }).join('');
+
+        // Newly-injected [data-page] links need the same nav wiring as
+        // the static ones (they aren't present at initial page load).
+        container.querySelectorAll('[data-page]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                if (page) {
+                    navigateTo(page);
+                    window.location.hash = '#' + page;
+                }
+            });
+        });
+    }
+
+    // ================================================================
+    //  PROJECT ENQUIRY FORM ("Work With ETI")
+    // ================================================================
+    // Submission logic is isolated here so a real backend/API can be
+    // wired in later without touching the markup. Mirrors the pattern
+    // already used by the contact form (POST to a JSON endpoint).
+    // TODO(API): /api/project-enquiry does not exist yet — connect it
+    // to ETI's backend once available.
+    function initProjectForm() {
+        const form = document.getElementById('projectForm');
+        if (!form) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const getVal = id => {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : '';
+            };
+
+            const payload = {
+                name: getVal('projectName'),
+                email: getVal('projectEmail'),
+                phone: getVal('projectPhone'),
+                organization: getVal('projectOrg'),
+                service: getVal('projectService'),
+                budget: getVal('projectBudget'),
+                timeline: getVal('projectTimeline'),
+                heardFrom: getVal('projectHeard'),
+                description: getVal('projectDescription')
+            };
+
+            if (!payload.name) {
+                showToast('Please enter your full name.', 'error');
+                document.getElementById('projectName').focus();
+                return;
+            }
+            if (!payload.email || !payload.email.includes('@') || !payload.email.includes('.')) {
+                showToast('Please enter a valid email address.', 'error');
+                document.getElementById('projectEmail').focus();
+                return;
+            }
+            if (!payload.description) {
+                showToast('Please tell us a little about your project.', 'error');
+                document.getElementById('projectDescription').focus();
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            }
+
+            try {
+                const response = await fetch('/api/project-enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to send your request.');
+                }
+
+                showToast(`Thanks, ${payload.name}! We've received your project details and will be in touch soon.`, 'success');
+                form.reset();
+            } catch (err) {
+                showToast(
+                    err.message || 'Something went wrong sending your request. Please try again or email us directly.',
+                    'error'
+                );
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            }
+        });
+    }
+
     // --- Initialise all ---
     initFromHash();
     initEcosystemLinks();
     initCourses();
+    initCatalogueDownload();
+    renderCohorts();
+    initProjectForm();
 
     // --- Logo click goes home ---
     document.querySelectorAll('.logo').forEach(logo => {
