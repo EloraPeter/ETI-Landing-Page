@@ -439,7 +439,7 @@
     const CATALOGUE_CONFIG = {
         // TODO: replace with the real path once the PDF exists, e.g.
         // '/assets/eti-course-catalogue.pdf'
-        url: '',
+        url: '/ETI-Course-Catalogue-2026-Premium-Edition.pdf',
         filename: 'ETI-Course-Catalogue.pdf'
     };
 
